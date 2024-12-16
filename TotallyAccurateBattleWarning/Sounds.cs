@@ -19,6 +19,7 @@ public class Sounds
     
     private static SFX_Instance GetSfxByNameAndSoundType(string name, SoundType soundType)
     {
+        // bundle sfx's names contains weapon and sfx type (e.g. "AK-47 Shoot"), so here we find it by those parameters
         return _sfx.First(x => x.name.Contains(name.Replace("(Clone)", "")) 
                                && x.name.Contains(soundType.ToString()));
     }

@@ -10,9 +10,10 @@ public class Firearm : ItemInstanceBehaviour
 {
     public float Damage;
     public int Ammo;
-    public int FireRate;
+    public int FireRate; // measured in bullets per minute (e.g. 100)
     public float ReloadTime;
 
+    // assigned in unity editor
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _barrelTransform;
     
@@ -73,7 +74,7 @@ public class Firearm : ItemInstanceBehaviour
 
 	private void ApplyRecoil()
     {
-        Player.localPlayer.CallAddForceToBodyParts([_handBodypartId],[-_barrelTransform.forward * 8]);
+        Player.localPlayer.CallAddForceToBodyParts([_handBodypartId], [-_barrelTransform.forward * 8]);
     }
 
     private IEnumerator ShootDelay()

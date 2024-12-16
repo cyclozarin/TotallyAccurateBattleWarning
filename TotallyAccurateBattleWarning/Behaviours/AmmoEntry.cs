@@ -4,8 +4,8 @@ namespace TotallyAccurateBattleWarning.Behaviours;
 
 public class AmmoEntry : ItemDataEntry, IHaveUIData
 {
-    public int Ammo { get; set; }
-    public int CurrentAmmo { get; set; }
+    public int Ammo;
+    public int CurrentAmmo;
 
     public override void Serialize(BinarySerializer binarySerializer)
     {
@@ -20,7 +20,9 @@ public class AmmoEntry : ItemDataEntry, IHaveUIData
     }
 
     public void DecreaseAmmo() => CurrentAmmo--;
+    
     public void ReloadAmmo() => CurrentAmmo = Ammo;
+    
     public bool Empty() => CurrentAmmo == 0;
 
     public string GetString() => $"{CurrentAmmo}/{Ammo} ammo";
