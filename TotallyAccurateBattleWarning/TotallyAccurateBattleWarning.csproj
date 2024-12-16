@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>cyclozarin.contentwarning.TABW</AssemblyName>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <CWDir Condition=" '$(CWDir)' == '' ">F:\Steam\steamapps\common\Content Warning</CWDir>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.*" PrivateAssets="all" />
+        <PackageReference Include="MaxWasUnavailable.ContentWarning.Libs" Version="1.19.5" Publicize="true"/>
+        <PackageReference Include="RugbugRedfern.MyceliumNetworking.CW" Version="1.0.14" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Bundles\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Bundles\tabwbundle" />
+      <EmbeddedResource Include="Bundles\tabwbundle" />
+    </ItemGroup>
+
+    <Target Name="CopyOutputFileToGame" AfterTargets="Build">
+        <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll;preview.png" DestinationFolder="$(CWDir)\Plugins\TotallyAccurateBattleWarning" />
+    </Target>
+
+</Project>
